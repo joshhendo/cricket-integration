@@ -61,6 +61,7 @@
     <Compile Include="CricketApi\ApiFetcher.cs" />
     <Compile Include="CricketApi\Cricinfo\CricinfoMatchInformation.cs" />
     <Compile Include="CricketApi\Cricinfo\CricinfoMatchDetails.cs" />
+    <Compile Include="CricketApi\Espn\EspnInfo.cs" />
     <Compile Include="MessageHandler\MessageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

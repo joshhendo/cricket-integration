@@ -176,7 +176,7 @@ namespace CricketIntegration.MessageHandler
             return (previousResult.State != currentResult.State) ;
         }
 
-        public static List<string> GetMessages(CricinfoMatchDetails previousResult, CricinfoMatchDetails currentResult)
+        public static List<string> GetMessages(CricinfoMatchDetails previousResult, CricinfoMatchDetails currentResult, int id)
         {
 
             var result = new List<string>();
@@ -218,7 +218,10 @@ namespace CricketIntegration.MessageHandler
                     ? previousResult.CurrentBatterScore
                     : previousResult.OtherBatterScore;
 
-                var message = string.Format("OUT! {0} on {1}", batter, score);
+                // Get the out string
+                var out_string = ApiFetcher.GetLastWicketInfo(id);
+
+                var message = string.Format("OUT! {0} on {1}, {2}", batter, score, out_string);
 
                 result.Add(message);
             }
@@ -226,10 +229,10 @@ namespace CricketIntegration.MessageHandler
             // Has a batter for a four or a six?
             foreach (var batter in currentResult.Batters)
             {
-                if (IsBatterFour(batter, previousResult, currentResult))
+                /*if (IsBatterFour(batter, previousResult, currentResult))
                 {
                     result.Add($"And that's a *four* for {batter}");
-                }
+                }*/
 
                 if (IsBatterSix(batter, previousResult, currentResult))
                 {

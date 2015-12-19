@@ -65,7 +65,7 @@ namespace CricketIntegration
                                 continue;
                             }
 
-                            var messages = MessageHandler.MessageHandler.GetMessages(previousResult, result);
+                            var messages = MessageHandler.MessageHandler.GetMessages(previousResult, result, matchOfInterest.id);
 
                             foreach (var message in messages)
                             {
