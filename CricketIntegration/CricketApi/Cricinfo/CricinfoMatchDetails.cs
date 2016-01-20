@@ -43,12 +43,32 @@ namespace CricketIntegration.CricketApi.Cricinfo
 
         public int BattingTeamRuns
         {
-            get { return int.Parse(RegexHandler(2)); }
+            get
+            {
+                try
+                {
+                    return int.Parse(RegexHandler(2));
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                }
+            }
         }
 
         public int BattingTeamOuts
         {
-            get { return int.Parse(RegexHandler(3)); }
+            get
+            {
+                try
+                {
+                    return int.Parse(RegexHandler(3));
+                }
+                catch (Exception)
+                {
+                    return 10;
+                }
+            }
         }
 
         public bool BattingTeamDeclared
