@@ -56,7 +56,7 @@ namespace CricketIntegration
                 {
                     try
                     {
-                        var result = ApiFetcher.GetMatch(matchOfInterest.id).FirstOrDefault();
+                       var result = ApiFetcher.GetMatch(matchOfInterest.id).FirstOrDefault();
 
                         if (result != null)
                         {
