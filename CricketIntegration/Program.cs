@@ -10,6 +10,7 @@ using CricketIntegration.CricketApi;
 using CricketIntegration.CricketApi.Cricinfo;
 using CricketIntegration.Storage;
 using CricketIntegration.ExternalServices.Slack;
+using Serilog;
 
 namespace CricketIntegration
 {
@@ -43,6 +44,10 @@ namespace CricketIntegration
 
         static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.AppSettings()
+                .CreateLogger();
+
             new Thread((new ThreadStart(MonitorMatchesOfInterest))).Start();
 
             while (true)
@@ -81,6 +86,7 @@ namespace CricketIntegration
                     catch (Exception e)
                     {
                         Console.WriteLine("Exception caught: " + e.Message);
+                        Log.Logger.Error(e, "An exception was caught by the main thread");
                     }
                     
                 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,9 +14,16 @@ namespace CricketIntegration.ExternalServices.Slack
     public class MessageSender
     {
         public static string WebHookUrl = ConfigurationManager.AppSettings["CricketIntegration.ExternalServices.Slack.WebhookUrl"];
+        public static bool Simulate = bool.Parse(ConfigurationManager.AppSettings["CricketIntegration.ExternalServices.Simulate"]);
 
         public async void Send(string message, string score, string webHookUrl = null)
         {
+            if (Simulate)
+            {
+                Console.WriteLine("Simulate message: " + message + "     score: " + score);
+                return;
+            }
+
             if (webHookUrl == null)
             {
                 webHookUrl = WebHookUrl;
